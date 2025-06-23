@@ -1,10 +1,9 @@
 "use client"
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const NotFound = () => {
-  const router = useRouter();
   const pathname = usePathname();
   useEffect(() => {
     console.error(

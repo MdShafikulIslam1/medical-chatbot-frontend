@@ -212,7 +212,7 @@ const Home = () => {
                   </div>
                   <div className="space-y-4">
                     <div className="bg-blue-50 p-4 rounded-lg">
-                      <p className="text-sm text-gray-700">"I have a persistent headache for 3 days..."</p>
+                      <p className="text-sm text-gray-700">&ldquo;I have a persistent headache for 3 days...&rdquo;</p>
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow-sm">
                       <p className="text-sm text-gray-700">Based on your symptoms, here are some possible causes and recommendations...</p>
@@ -334,7 +334,7 @@ const Home = () => {
                       <User className="h-4 w-4 text-blue-600" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-gray-700">"What are the common symptoms of dehydration?"</p>
+                      <p className="text-gray-700">&ldquo;What are the common symptoms of dehydration?&rdquo;</p>
                     </div>
                   </div>
                 </div>
@@ -391,7 +391,7 @@ const Home = () => {
                       <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-4">"{testimonial.content}"</p>
+                  <p className="text-gray-700 mb-4">&ldquo;{testimonial.content}&rdquo;</p>
                   <div className="flex items-center">
                     <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
                       <span className="text-sm font-semibold text-blue-600">{testimonial.avatar}</span>
@@ -460,7 +460,7 @@ const Home = () => {
             className={`text-center mb-16 ${animatedElements.has('pricing-header') ? 'animate-fade-in' : 'opacity-0'}`}
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-xl text-gray-600">Choose the plan that's right for you</p>
+            <p className="text-xl text-gray-600">Choose the plan that&apos;s right for you</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Card 
