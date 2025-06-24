@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import axios from "axios";
 import { Bot, Heart, Send, User } from "lucide-react";
 import { useState } from "react";
 
 interface Message {
-  id: string;
+  // id: string;
   content: string;
   sender: 'user' | 'bot';
   timestamp: Date;
@@ -16,38 +17,57 @@ interface Message {
 const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: '1',
+      // id: '1',
       content: 'Hello! I\'m your AI medical assistant. How can I help you today?',
       sender: 'bot',
       timestamp: new Date()
     }
   ]);
   const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
-
+  
     const userMessage: Message = {
-      id: Date.now().toString(),
       content: input,
       sender: 'user',
       timestamp: new Date()
     };
-
     setMessages(prev => [...prev, userMessage]);
     setInput('');
+    setLoading(true);
+  
+    try {
+      const response = await axios.post("http://localhost:8080/medi-conversation", {
+        query: input
+      });
+  
 
-    // Simulate bot response
-    setTimeout(() => {
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content: 'Thank you for your question. As an AI assistant, I can provide general health information, but please remember to consult with healthcare professionals for medical advice.',
+      console.log("response",response?.data);
+      // Assuming backend returns: { answer: "some response text" }
+      if (response?.data?.msg === "success") {
+        const botMessage: Message = {
+          content: response?.data?.data?.bot || "Sorry, I didn't understand that.",
+          sender: 'bot',
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, botMessage]);
+      }
+  
+    } catch (error) {
+      console.error("chat error", error);
+      const errorMessage: Message = {
+        content: "Oops! Something went wrong. Please try again.",
         sender: 'bot',
         timestamp: new Date()
       };
-      setMessages(prev => [...prev, botMessage]);
-    }, 1000);
+      setMessages(prev => [...prev, errorMessage]);
+    }finally{
+      setLoading(false);
+    }
   };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-teal-50 p-4">
@@ -65,9 +85,9 @@ const Chat = () => {
           <CardContent className="flex-1 flex flex-col p-0">
             <ScrollArea className="flex-1 p-4">
               <div className="space-y-4">
-                {messages.map((message) => (
+                {messages.map((message,index) => (
                   <div
-                    key={message.id}
+                    key={index}
                     className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
@@ -100,6 +120,22 @@ const Chat = () => {
                     </div>
                   </div>
                 ))}
+                 {loading && (
+      <div className="flex justify-start">
+        <div className="flex items-start space-x-2 max-w-[80%]">
+          <div className="p-2 rounded-full gradient-medical">
+            <Bot className="h-4 w-4 text-white" />
+          </div>
+          <div className="p-3 rounded-lg bg-gray-100 text-gray-900">
+            <div className="flex items-center space-x-1">
+              <div className="dot dot1"></div>
+              <div className="dot dot2"></div>
+              <div className="dot dot3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
               </div>
             </ScrollArea>
             <div className="p-4 border-t">

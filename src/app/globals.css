@@ -177,3 +177,36 @@ a {
     transform: translateY(0);
   }
 }
+
+
+
+@layer components {
+  .dot {
+    width: 6px;
+    height: 6px;
+    background-color: #4B5563; /* gray-700 */
+    border-radius: 9999px;
+    animation: bounce 1.2s infinite ease-in-out;
+  }
+
+  .dot1 {
+    animation-delay: 0s;
+  }
+
+  .dot2 {
+    animation-delay: 0.2s;
+  }
+
+  .dot3 {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes bounce {
+    0%, 80%, 100% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1);
+    }
+  }
+}
