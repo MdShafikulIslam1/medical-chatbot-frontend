@@ -210,3 +210,25 @@ a {
     }
   }
 }
+
+/* Custom scrollbar styles for chat scroll area */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+.scrollbar-thumb-blue-400::-webkit-scrollbar-thumb {
+  background-color: #60a5fa;
+  border-radius: 8px;
+}
+.scrollbar-track-blue-100::-webkit-scrollbar-track {
+  background-color: #dbeafe;
+  border-radius: 8px;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Always show scrollbar for overflow */
+.overflow-y-auto {
+  overflow-y: auto !important;
+}
