@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏥 Multilingual Medical Chatbot using RAG, LLM & Translation APIs
 
-## Getting Started
+An AI-powered medical assistant chatbot that supports multilingual medical queries with real-time translation, intelligent retrieval, and LLM-generated answers. Built using a RAG (Retrieval-Augmented Generation) pipeline, this system provides accurate medical responses from **The Gale Encyclopedia of Medicine** and presents them in the user's native language with a clean and interactive frontend.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌟 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🌐 **Multilingual Support**  
+  Ask questions in any language and receive a translated answer in the same language.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 📚 **Authoritative Medical Knowledge**  
+  Responses are grounded in *The Gale Encyclopedia of Medicine*.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 💬 **RAG-based Smart Q&A**  
+  Uses LangChain to fetch context-aware responses through vector similarity.
 
-## Learn More
+- 🗣️ **Text-to-Speech Integration** *(optional)*  
+  Readable voice output for enhanced accessibility.
 
-To learn more about Next.js, take a look at the following resources:
+- 🎨 **Modern UI/UX**  
+  Beautiful, responsive interface using Tailwind CSS & shadcn/ui components.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧰 Tech Stack
 
-## Deploy on Vercel
+### ⚙️ Backend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **FastAPI** – REST API framework
+- **LangChain** – RAG pipeline orchestration
+- **Hugging Face Embeddings** – Text vector embeddings
+- **Groq API** – High-speed LLM for generating responses
+- **Together API** – Language translation (input/output)
+- **Pinecone** – Vector similarity search engine
+- **The Gale Encyclopedia of Medicine** – Source dataset
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🖥️ Frontend
+
+- **Next.js** – React-based frontend framework
+- **TypeScript** – Type-safe development
+- **Tailwind CSS** – Utility-first CSS framework
+- **shadcn/ui** – Component library for modern UI
+
+### ☁️ DevOps
+
+- **GitHub Actions** – CI/CD for automated deployment
+- **AWS EC2** – Hosting backend and frontend
+
+---
+
+## 🧠 How It Works
+
+```mermaid
+graph TD
+A[User Question (any language)] --> B[Translate via Together API]
+B --> C[Embedding via Hugging Face]
+C --> D[Search Context from Pinecone]
+D --> E[LangChain Prompt with Retrieved Docs]
+E --> F[Groq LLM generates response]
+F --> G[Translate back to original language]
+G --> H[Return Answer to Frontend]
