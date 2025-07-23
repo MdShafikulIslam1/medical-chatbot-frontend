@@ -239,10 +239,12 @@ const Chat = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/medi-conversation`, // অথবা https:// (যদি SSL থাকে)
-        // "http://3.87.9.147:8080/medi-conversation", // অথবা https:// (যদি SSL থাকে)
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/medi-conversation`,
         { query: input },
-        { headers: { "Content-Type": "application/json" } } // হেডার যোগ করুন
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true, // add this line if your backend needs credentials (cookies, auth)
+        }
       );
 
       if (response?.data?.msg === "success") {
