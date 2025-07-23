@@ -55,13 +55,13 @@ const Navbar = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/dashboard">
+            {/* <Link href="/dashboard">
               <Button variant="ghost" size="sm">
                 <User className="h-4 w-4 mr-2" />
                 Dashboard
               </Button>
-            </Link>
-            <Link href="/sign-in">
+            </Link> */}
+            {/* <Link href="/sign-in">
               <Button variant="outline" size="sm">
                 Login
               </Button>
@@ -70,7 +70,7 @@ const Navbar = () => {
               <Button size="sm" className="gradient-medical">
                 Sign Up
               </Button>
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile menu button */}
@@ -105,7 +105,7 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="border-t pt-3 space-y-2">
+            {/* <div className="border-t pt-3 space-y-2">
               <Link href="/dashboard" onClick={() => setIsOpen(false)}>
                 <Button variant="ghost" size="sm" className="w-full justify-start">
                   <User className="h-4 w-4 mr-2" />
@@ -122,7 +122,7 @@ const Navbar = () => {
                   Sign Up
                 </Button>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       )}
