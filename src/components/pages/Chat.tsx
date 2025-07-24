@@ -239,7 +239,7 @@ const Chat = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/medi-conversation`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/medi-conversation`,
         { query: input },
         {
           headers: { "Content-Type": "application/json" },
